@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block head %}
+
+<link rel="stylesheet" style="text/css" href="/media/style_login.css">
+
+{% endblock %}
+
+{% block content %}
+	<div class="loginform">
+		{% if error %}
+		<p class="formerror">   
+		{{ error }}
+		</p>   
+		{% endif %}
+		<form method="post" action=".">
+			{% csrf_token %}
+			{{form.as_p}}
+			<button type="submit" id="signupbutton">Sign Up!</button>
+		</form>
+	</div>
+{% endblock %}

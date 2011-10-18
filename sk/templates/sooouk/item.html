@@ -1,0 +1,82 @@
+{% extends 'base.html'%}
+
+
+{% block head %}
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link href="/media/item_style.css" rel="stylesheet" type="text/css" />
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+	var address = "{{item.location}}";
+	var isFollowing = parseInt('{{isFollowing}}');
+	var itemUserId = {{item.user.user.id}};
+</script>
+<script type="text/javascript" src="/media/loadMap.js"></script>
+<script type="text/javascript" src="/media/following.js"></script>
+{% endblock %}
+
+
+
+{% block portal %}
+<div class="portal">
+	{% if user.is_authenticated %}
+		<a href="/auth/logout/">Logout</a>
+	{% else %}
+		<a href="/login/">Login</a>
+	{% endif %}
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+{% block content %}
+{% if item %}
+	<div class="itemfull">
+		<div class="itemfullphoto">
+			<img src="{{item.photourl}}" alt="{{item.title}}"/>
+			<div id="map_canvas" style="width:100%; height:200px; float: right;"></div>
+		</div>
+		<div class="itemfulltitle">
+			{{item.title}} 
+		</div>
+		<div class="itemfullpost">
+			{{item.post}}
+		</div>
+		{% if user.is_authenticated %}
+			{% if user != item.user.user %}
+			<div class="postedby">
+				Posted by <a id="user">{{item.user.user.username}}</a> 
+			</div>
+			
+			<button type="submit" id="followbutton">Follow</button>
+			
+			<button type="submit" id="unfollowbutton">Unfollow</button>			
+			
+			{% else %}
+			
+			<div class="postedby">
+				Posted by you.
+			</div>
+			
+			{% endif %}
+		{% else %}
+			<div class="postedby">
+				Posted by <a id="user">{{item.user.user.username}}</a> 
+			</div>
+			
+			<form action="/login/">
+				<button type="submit" id="loginbutton">login</button>
+			</form>			
+		{% endif %}	
+	</div>
+{% else %}
+	<p>Item doesn't exist.</p>
+{% endif %}
+{% endblock %}
+
+
+
