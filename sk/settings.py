@@ -1,5 +1,5 @@
 import os
-# Django settings for soooukAlpha project.
+# Django settings for sk project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -87,7 +87,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'soooukAlpha.urls'
+ROOT_URLCONF = 'sk.urls'
 
 TEMPLATE_DIRS = (
 	os.path.join(os.path.dirname(__file__), "templates"),

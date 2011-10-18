@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
-from soooukAlpha.views import * 
+from sk.views import * 
 
 from django.contrib import admin
 admin.autodiscover()
