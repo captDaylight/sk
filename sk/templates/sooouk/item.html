@@ -3,7 +3,7 @@
 
 {% block head %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<link href="/media/css/item_style.css" rel="stylesheet" type="text/css" />
+<link href="{{STATIC_URL}}css/item_style.css" rel="stylesheet" type="text/css" />
 <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
@@ -11,8 +11,8 @@
 	var isFollowing = parseInt('{{isFollowing}}');
 	var itemUserId = {{item.user.user.id}};
 </script>
-<script type="text/javascript" src="/media/js/loadMap.js"></script>
-<script type="text/javascript" src="/media/js/following.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/loadMap.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/following.js"></script>
 {% endblock %}
 
 
