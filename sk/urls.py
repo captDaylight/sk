@@ -17,6 +17,7 @@ urlpatterns = patterns('',
 	(r'^item/(?P<item_id>\d+)/$', item),
 	(r'^follow/(?P<user_id>\d+)/$', follow),
 	(r'^unfollow/(?P<user_id>\d+)/$', unfollow),
+	(r'^vote/(?P<item_id>\d+)/(?P<user_id>\d+)/$', vote),
 
 	url(r'^admin/', include(admin.site.urls)),
 )

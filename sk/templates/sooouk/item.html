@@ -10,9 +10,13 @@
 	var address = "{{item.location}}";
 	var isFollowing = parseInt('{{isFollowing}}');
 	var itemUserId = {{item.user.user.id}};
+	var voter = {{user.id}}
 </script>
 <script type="text/javascript" src="{{STATIC_URL}}js/loadMap.js"></script>
-<script type="text/javascript" src="{{STATIC_URL}}js/following.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/item.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/follow.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/vote.js"></script>
+
 {% endblock %}
 
 
@@ -31,8 +35,6 @@
 
 
 
-
-
 {% block content %}
 {% if item %}
 	<div class="itemfull">
@@ -41,7 +43,26 @@
 			<div id="map_canvas" style="width:100%; height:200px; float: right;"></div>
 		</div>
 		<div class="itemfulltitle">
-			{{item.title}} 
+			{{item.title}}
+			
+			{% if user.is_authenticated %}
+				{% if user != item.user.user %}
+					<div id="votearea">
+						This product has been voted on {{item.vote_set.count}} time{{item.vote_set.count|pluralize}}
+						<button type="submit">
+					</div>
+					<div id="votearea">
+						This product has been voted on {{item.vote_set.count}} time{{item.vote_set.count|pluralize}}
+						<button type="submit" id="votebutton">Vote</button>
+					</div>
+				{% else %}
+				<div id="votearea">
+					Your Item hase been voted on {{item.vote_set.count}} time{{item.vote_set.count|pluralize}}
+				</div>				
+				{% endif %}
+			{% else %}
+				
+			{% endif %}
 		</div>
 		<div class="itemfullpost">
 			{{item.post}}
@@ -55,12 +76,6 @@
 			<button type="submit" id="followbutton">Follow</button>
 			
 			<button type="submit" id="unfollowbutton">Unfollow</button>			
-			
-			{% else %}
-			
-			<div class="postedby">
-				Posted by you.
-			</div>
 			
 			{% endif %}
 		{% else %}

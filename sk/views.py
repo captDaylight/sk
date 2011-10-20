@@ -78,7 +78,22 @@ def upload(request):
 		},context_instance=RequestContext(request))
 	
 	
-	
+@login_required
+def vote(request, item_id, user_id):
+	if request.method == 'GET':
+		print user_id + ", " + item_id
+		u = User.objects.get(id=user_id)
+		i = Item.objects.get(id=item_id)
+		try:
+			v = Vote.objects.get(item=i, voter=u.get_profile())
+			print v + "in the try"
+			success = {"success": "it was not a success"}
+		except:			
+			v = Vote(item=i, voter=u.get_profile())
+			v.save()
+			print v			
+			success = {"success": "it was a success"}
+	return HttpResponse(json.dumps(success), mimetype="application/javascript")	
 	
 	
 	

@@ -67,6 +67,12 @@ class Item(models.Model):
 	def __unicode__(self):
 		return self.title
 
+class Vote(models.Model):
+	item = models.ForeignKey(Item)
+	voter = models.ForeignKey(UserProfile)
+	def __unicode__(self):
+		return self.item.title
+
 class UploadForm(forms.Form):
 	#category_choices = [(m.id, m.category) for c in Categories.objects.all()]
 	title = forms.CharField(max_length = 100)
