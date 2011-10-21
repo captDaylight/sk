@@ -6,14 +6,13 @@ function add_vote(){
 		success: function(data){
 			try{
 				jsonOBJ = $.parseJSON(data);
+				console.log(jsonOBJ);
 			}
 			catch(e){
 				jsonOBJ = {};
 			}
 		}
 	});
-	openClose();
-	isFollowing = 2;
-	openClose();
+	
 	return false;
 };

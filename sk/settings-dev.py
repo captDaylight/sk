@@ -31,7 +31,7 @@ USE_L10N = True
 STATIC_ROOT = os.path.join(os.path.dirname(__file__), "media")
 MEDIA_URL = '/media/'
 LOGIN_URL = '/login'
-STATIC_URL = 'http://127.0.0.1:8000/media/'
+STATIC_URL = 'http://pure-night-3486.herokuapp.com/media/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -85,6 +85,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+	'django.contrib.comments',
     'sooouk',
     'auth',
 )

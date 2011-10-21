@@ -3,14 +3,21 @@
 
 {% block head %}
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<link href="{{STATIC_URL}}css/item_style.css" rel="stylesheet" type="text/css" />
+<link href="{{STATIC_URL}}css/style_item.css" rel="stylesheet" type="text/css" />
 <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
 	var address = "{{item.location}}";
 	var isFollowing = parseInt('{{isFollowing}}');
 	var itemUserId = {{item.user.user.id}};
-	var voter = {{user.id}}
+	var voter = {{user.id}};
+	{% if hasVoted == False %}
+	console.log("False");
+	var hasVoted = false;
+	{% else %}
+	console.log("True");
+	var hasVoted = true;
+	{% endif %}
 </script>
 <script type="text/javascript" src="{{STATIC_URL}}js/loadMap.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/item.js"></script>
@@ -34,7 +41,6 @@
 
 
 
-
 {% block content %}
 {% if item %}
 	<div class="itemfull">
@@ -43,25 +49,26 @@
 			<div id="map_canvas" style="width:100%; height:200px; float: right;"></div>
 		</div>
 		<div class="itemfulltitle">
-			{{item.title}}
-			
+			{{item.title}}	
 			{% if user.is_authenticated %}
 				{% if user != item.user.user %}
+					{% if hasVoted == True %}
 					<div id="votearea">
-						This product has been voted on {{item.vote_set.count}} time{{item.vote_set.count|pluralize}}
-						<button type="submit">
+						{{item.vote_set.count}} Vote{{item.vote_set.count|pluralize}}
+						<div>You have Voted.</div>
 					</div>
+					{% else %}
 					<div id="votearea">
-						This product has been voted on {{item.vote_set.count}} time{{item.vote_set.count|pluralize}}
+						{{item.vote_set.count}} Vote{{item.vote_set.count|pluralize}}
 						<button type="submit" id="votebutton">Vote</button>
 					</div>
+					{%endif%}
 				{% else %}
 				<div id="votearea">
 					Your Item hase been voted on {{item.vote_set.count}} time{{item.vote_set.count|pluralize}}
 				</div>				
 				{% endif %}
 			{% else %}
-				
 			{% endif %}
 		</div>
 		<div class="itemfullpost">
@@ -72,11 +79,13 @@
 			<div class="postedby">
 				Posted by <a id="user">{{item.user.user.username}}</a> 
 			</div>
-			
-			<button type="submit" id="followbutton">Follow</button>
-			
-			<button type="submit" id="unfollowbutton">Unfollow</button>			
-			
+				{% if isFollowing == 1 %}
+				<button type="submit" id="followbutton">Follow</button>
+				{% else %}
+				<button type="submit" id="unfollowbutton">Unfollow</button>	
+				{% endif %}
+			{% else %}
+			<div class="postedby">This item was uploaded by you.</div>		
 			{% endif %}
 		{% else %}
 			<div class="postedby">
@@ -91,6 +100,23 @@
 {% else %}
 	<p>Item doesn't exist.</p>
 {% endif %}
+
+
+
+{% load comments %}
+{% if user.is_authenticated %}
+{% render_comment_form for item %}
+{% endif %}
+
+
+{% get_comment_list for item as comment_list %}
+{% get_comment_count for item as comment_count %}
+<p>{{ comment_count }} comment{{comment_count|pluralize}} posted.</p>
+{% for comment in comment_list %}
+<p>{{comment}} {{comment.user}}</p>
+{% endfor %}
+
+
 {% endblock %}
 
 

@@ -1,4 +1,13 @@
-$(document).ready(function() {		
+$(document).ready(function() {	
+	if(isFollowing == 1){
+		show follow
+	}else if(isFollowing == 2){
+		show unfollow
+	}else if(){
+		show signin 
+	}
+	
+		
 	$("#user").click(function(){
 		openClose();
 	});

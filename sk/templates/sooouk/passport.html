@@ -2,7 +2,31 @@
 
 
 {% block head %}
+<link href="{{STATIC_URL}}css/style_passport.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$(document).ready(function() {		
+	var userInfoOpen = false;
+	
+	function openClose(){
+		if(userInfoOpen == false){
+			$('.passportform').show(200);
+			$('.passportinfo').hide(200);			
+			userInfoOpen = true;
+		}else if(userInfoOpen == true){
+			$('.passportform').hide(200);
+			$('.passportinfo').show(200);	
+			userInfoOpen = false;
+		}
+	}
 
+	$("button").click(function(){
+		if($(this).attr('id') == 'edit'){
+			openClose();
+		}
+	});
+
+});
+</script>
 {% endblock %}
 
 
@@ -20,18 +44,78 @@
 
 
 {% block content %}
-	<div class="passportform">
-		{% if error %}
-		<p class="formerror">   
-		{{ error }}
-		</p>   
-		{% endif %}
-		<form method="post" action=".">
-			{% csrf_token %}
-			{{form.as_p}}
-			<button type="submit" id="passportbutton">Save Changes</button>
-		</form>
+<div class="passportinfo">
+	<div>
+		User Name:
+		{{profile.user.username}}
 	</div>
+	<div>
+		First Name:
+		{{profile.user.first_name}}
+	</div>
+	<div>
+		Last Name:
+		{{profile.user.last_name}}
+	</div>
+	<div>
+		About Me:
+		{{profile.about_me}}
+	</div>
+	
+	{% if user == profile.user %}
+	<button id="edit">Edit Info</button>
+	{% endif %}
+</div>
+
+<div class="passportform">
+	<button id="edit">Don't edit</button>
+	{% if error %}
+	<p class="formerror">   
+	{{ error }}
+	</p>   
+	{% endif %}
+	<form method="post" action=".">
+		{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit" id="passportbutton">Save Changes</button>
+	</form>
+</div>
+
+{% if my_item_list %}
+	{% for item in latest_item_list %}
+	<a href="/item/{{item.id}}">
+		<div class="item">
+			<img src="{{item.photourl}}" style="width: 100%; height: 100%;"/>
+			<div class="itemtitle">
+				{{item.title}}
+			</div>
+			{% if item.user.user.username == user.username %}
+				Uploaded by You
+			{% else %}
+				{{item.user.user.username}}
+			{% endif %}
+		</div>
+	</a>
+	{% endfor %}
+{% endif %}
+
+{% if my_item_following_list %}
+	{% for item in latest_item_list %}
+	<a href="/item/{{item.id}}">
+		<div class="item">
+			<img src="{{item.photourl}}" style="width: 100%; height: 100%;"/>
+			<div class="itemtitle">
+				{{item.title}}
+			</div>
+			{% if item.user.user.username == user.username %}
+				Uploaded by You
+			{% else %}
+				{{item.user.user.username}}
+			{% endif %}
+		</div>
+	</a>
+	{% endfor %}
+{% endif %}
 {% endblock %}
 
 

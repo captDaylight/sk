@@ -1,14 +1,11 @@
-var userInfoOpen = false;
 var button = new Array("#followbutton","#unfollowbutton","#loginbutton");
 var jsonOBJ;
 
 function openClose(){
 	if(userInfoOpen == false){
 		$(button[isFollowing-1]).show(200);
-		userInfoOpen = true;
 	}else if(userInfoOpen == true){
 		$(button[isFollowing-1]).hide(200);
-		userInfoOpen = false;
 	}
 }
 
