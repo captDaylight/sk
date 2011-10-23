@@ -18,11 +18,20 @@
 	console.log("True");
 	var hasVoted = true;
 	{% endif %}
+	
+	$(document).ready(function() {
+	    media = '{{MEDIA_URL}}';
+	    $('div.comment-form form').submit(function() {
+	        ajaxComment({'media': media});
+	        return false;
+    });
+});
 </script>
 <script type="text/javascript" src="{{STATIC_URL}}js/loadMap.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/item.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/follow.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/vote.js"></script>
+<script src="{{ MEDIA_URL }}ajaxcomments/js/post-comment.js" type="text/javascript"></script>
 
 {% endblock %}
 
