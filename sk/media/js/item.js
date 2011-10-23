@@ -10,6 +10,7 @@ $(document).ready(function() {
 	});
 	
 	
+/*
 	$('form').submit(function(){
 		$.ajax({
 		url:"/unfollow/"+itemUserId+"/",
@@ -24,4 +25,5 @@ $(document).ready(function() {
 		}
 		event.preventDefault();
 	});
+*/
 });

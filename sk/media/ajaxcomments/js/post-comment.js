@@ -5,7 +5,6 @@ $(document).ready(function() {
 });
 
 function ajaxComment(args) {
-	alert("asntaoeuh");
     // TODO: if the media variable ends in a forward slash, remove it.
     var media = args.media;
     
@@ -42,7 +41,7 @@ function ajaxComment(args) {
     
     url = $('div.comment-form form').attr('action');
 /*     url = $('div.comment-form form').attr('action'); */
-    
+    console.log("ok here");
     // Use AJAX to post the comment.
     $.ajax({
         type: 'POST',
@@ -50,7 +49,6 @@ function ajaxComment(args) {
         data: comment,
         success: function(data) {
             commentBusy = false;
-        
             removeWaitAnimation()
         
             if (data.success == true) {
@@ -61,7 +59,6 @@ function ajaxComment(args) {
         },
         error: function(data) {
             commentBusy = false;
-            
             removeWaitAnimation()
             
             $('div.comment-form form').unbind('submit');
@@ -69,7 +66,6 @@ function ajaxComment(args) {
         },
         dataType: 'json'
     });
-    
     return false;
 }
 
@@ -78,6 +74,7 @@ function commentSuccess(data) {
     comment = $('#id_comment').val();
     name = $('#id_name').val();
     url = $('#id_url').val();
+    
     
     if ($('div#comments').children().length == 0) {
         $('div#comments').prepend(
