@@ -29,7 +29,7 @@ USE_L10N = True
 
 
 STATIC_ROOT = os.path.join(os.path.dirname(__file__), "media")
-MEDIA_URL = 'http://pure-night-3486.herokuapp.com/media/'
+MEDIA_URL = '/media/'
 LOGIN_URL = '/login'
 STATIC_URL = 'http://pure-night-3486.herokuapp.com/media/'
 
