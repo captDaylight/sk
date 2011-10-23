@@ -60,7 +60,7 @@
 					{% else %}
 					<div id="votearea">
 						{{item.vote_set.count}} Vote{{item.vote_set.count|pluralize}}
-						<button type="submit" id="votebutton">Vote</button>
+						<button type="submit" class="votebutton">Vote</button>
 					</div>
 					{%endif%}
 				{% else %}
@@ -77,19 +77,19 @@
 		{% if user.is_authenticated %}
 			{% if user != item.user.user %}
 			<div class="postedby">
-				Posted by <a id="user">{{item.user.user.username}}</a> 
+				Posted by <a id="user" href="/passport/{{item.user.user.id}}/">{{item.user.user.username}}</a> 
 			</div>
 				{% if isFollowing == 1 %}
-				<button type="submit" id="followbutton">Follow</button>
+				<button type="submit" class="followbutton">Follow</button>
 				{% else %}
-				<button type="submit" id="unfollowbutton">Unfollow</button>	
+				<button type="submit" class="unfollowbutton">Unfollow</button>	
 				{% endif %}
 			{% else %}
 			<div class="postedby">This item was uploaded by you.</div>		
 			{% endif %}
 		{% else %}
 			<div class="postedby">
-				Posted by <a id="user">{{item.user.user.username}}</a> 
+				Posted by <a id="user" href="/passport/{{item.user.user.id}}/">{{item.user.user.username}}</a> 
 			</div>
 			
 			<form action="/login/">
@@ -104,17 +104,9 @@
 
 
 {% load comments %}
-{% if user.is_authenticated %}
 {% render_comment_form for item %}
-{% endif %}
+{% render_comment_list for item %}
 
-
-{% get_comment_list for item as comment_list %}
-{% get_comment_count for item as comment_count %}
-<p>{{ comment_count }} comment{{comment_count|pluralize}} posted.</p>
-{% for comment in comment_list %}
-<p>{{comment}} {{comment.user}}</p>
-{% endfor %}
 
 
 {% endblock %}

@@ -107,7 +107,8 @@ def follow(request, user_id):
 		print u.get_profile().followers.all()		
 	success = {"success": "it was a success"}
 	print success
-	return HttpResponse(json.dumps(success), mimetype="application/javascript")
+	return HttpResponse(json.dumps(success), mimetype="application/javascript")	
+	
 
 @login_required
 def unfollow(request, user_id):
@@ -118,7 +119,6 @@ def unfollow(request, user_id):
 	success = {"success": "it was a success"}
 	print success
  	return HttpResponse(json.dumps(success), mimetype="application/javascript")
-
 
 
 

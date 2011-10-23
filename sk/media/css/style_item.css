@@ -24,3 +24,7 @@
 .itemfullphoto{
 	background-color: aqua;
 }
+
+#id_honeypot{
+	display:none;
+}
