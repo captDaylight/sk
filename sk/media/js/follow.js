@@ -1,7 +1,3 @@
-var button = new Array("#followbutton","#unfollowbutton","#loginbutton");
-var jsonOBJ;
-
-
 function delete_follower(){
 	$.ajax({
 		url:"/unfollow/"+itemUserId+"/",

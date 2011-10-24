@@ -39,9 +39,10 @@
 					You are following:
 					{% for person in following_list %}
 						<div class="person">
-							{{person.user.username}}
+							<a href="/passport/{{person.user.id}}"><img src="{{MEDIA_URL}}img/blank_avatar.png" alt="avatar" class="avatarsmall"/>
+							<div class="username">{{person.user.username}}</div></a>
 						</div>
-					{% endfor %}		
+					{% endfor %}
 				</div>
 				{% endif %}
 
@@ -53,8 +54,16 @@
 				{% endif %}
 	        </div>
         </div>
+        
         <div class="footer">
-			hi
+			<div class="footerinfo"><a>about</a></div>
+			<div class="footerinfo"><a>faq</a></div>
+			<div class="footerinfo"><a>blog</a></div>
+			<div class="footerinfo"><a>chat</a></div>
+			<div class="footerinfo"><a>shop</a></div>
+			<div class="footerinfo"><a>contact us</a></div>
+			<div class="footerinfo"><a>feedback</a></div>			
+			site design / logo &copy; 2011 sooouk inc;
 		</div>
     </body>
 </html>

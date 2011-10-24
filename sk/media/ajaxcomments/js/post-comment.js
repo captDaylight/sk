@@ -50,7 +50,7 @@ function ajaxComment(args) {
         success: function(data) {
             commentBusy = false;
             removeWaitAnimation()
-        
+        	alert("in the success function")
             if (data.success == true) {
                 commentSuccess(data);
             } else {
@@ -75,6 +75,8 @@ function commentSuccess(data) {
     name = $('#id_name').val();
     url = $('#id_url').val();
     
+    alert("successsuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccess");
+    
     
     if ($('div#comments').children().length == 0) {
         $('div#comments').prepend(
@@ -98,6 +100,7 @@ function commentSuccess(data) {
 }
 
 function commentFailure(data) {
+	alert("not  successsuccesssuccesssuccesssuccesssuccesssuccesssuccesssuccess");
     $('div.comment-form ul.errorlist').each(function() {
         this.parentNode.removeChild(this);
         });

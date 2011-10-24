@@ -18,6 +18,6 @@ urlpatterns = patterns('',
 	(r'^vote/(?P<item_id>\d+)/(?P<user_id>\d+)/$', vote),
 	
 	(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT }),
-    (r'^comments/', include('django.contrib.comments.urls')),
+	(r'^comments/', include('django.contrib.comments.urls')),
 	url(r'^admin/', include(admin.site.urls)),
 )

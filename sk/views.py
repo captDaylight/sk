@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import ungettext
 from sooouk.models import *
 import json
 
@@ -33,12 +34,11 @@ def item(request, item_id):
 		try:
 			request.user.get_profile().following.get(id=i.user.user.id)
 		except:
-			f = 1
+			f = False
 		else:
-			f = 2
+			f = True
+		print hv
 		return render_to_response('sooouk/item.html', {'item': i, 'isFollowing': f,'has_voted':hv,'following_list': following_list}, context_instance=RequestContext(request))
-	else:
-		f = 3
 	return render_to_response('sooouk/item.html', {'item': i}, context_instance=RequestContext(request))
 	
 	
@@ -83,22 +83,17 @@ def upload(request):
 	
 @login_required
 def vote(request, item_id, user_id):
+	print "inside vote"
 	if request.method == 'GET':
 		u = User.objects.get(id=user_id)
 		i = Item.objects.get(id=item_id)
 		Vote.objects.get_or_create(item=i, voter=u.get_profile())
-		success = ungettext(
-	        '%(count)d Vote',
-	        '%(count)d Votes',
-	    count) % {
-	        'count': Vote.objects.count(),
-	    }
-		success = {"success": success}
+		count = ungettext('%(count)d Vote', '%(count)d Votes', Vote.objects.filter(item=i).count()) % {'count': Vote.objects.filter(item=i).count(),}
+		success = {"count": count, "success": "SUCCESS"}
 	else:
-		success = {"success": "NOT A SUCCESS"}
+		success = {"success": "FAIL"}
 	return HttpResponse(json.dumps(success), mimetype="application/javascript")	
 
-	
 @login_required
 def follow(request, user_id):
 	if request.method == 'GET':
@@ -109,7 +104,6 @@ def follow(request, user_id):
 	print success
 	return HttpResponse(json.dumps(success), mimetype="application/javascript")	
 	
-
 @login_required
 def unfollow(request, user_id):
 	if request.method == 'GET':
@@ -119,9 +113,6 @@ def unfollow(request, user_id):
 	success = {"success": "it was a success"}
 	print success
  	return HttpResponse(json.dumps(success), mimetype="application/javascript")
-
-
-
 
 @login_required
 def passport(request, user_id):

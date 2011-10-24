@@ -17,29 +17,31 @@ def jsonify_if_ajax(func, request):
         if request.is_ajax():
             success = True
             json_errors = {}
-            
+            print "hm"
+            print args
+            print args[1]['form']
             try:
+            	print "hello"
                 form = args[1]['form']
-                
                 if form.errors:
                     for error in form.errors:
                         json_errors.update({error: str(form.errors[error])})
                     success = False
-            except TypeError:
+            except TypeError, t:
+            	print t
                 pass
-            
             comment_html = None
             if 'c' in kwargs:
                 comment_html = render_to_string('comments/comment.html',
                                                 {'comment': Comment.objects.get(id=kwargs['c']) },
                                                 context_instance=RequestContext(request))
-            
             json_response = simplejson.dumps({
                 'success': success,
                 'errors': json_errors,
                 'html': comment_html,
             })
             
+            print "right before the return"
             return http.HttpResponse(json_response, mimetype="application/json")
         else:
             return func(*args, **kwargs)
