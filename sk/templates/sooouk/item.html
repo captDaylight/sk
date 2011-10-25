@@ -64,7 +64,7 @@ $(document).ready(function() {
 			</div>
 			{% if user.is_authenticated %}
 				{% if user != item.user.user %}
-					{% if hasVoted == "True" %}
+					{% if hasVoted%}
 					<div id="votearea">
 						<b>{{item.vote_set.count}}</b> Vote{{item.vote_set.count|pluralize}}
 						<div>You have Voted.</div>
@@ -87,13 +87,11 @@ $(document).ready(function() {
 		<div class="itemfullpost">
 			{{item.post}}
 		</div>
-		
 		{% if user.is_authenticated %}
 			{% if user != item.user.user %}
 			<div class="postedby">
 				Posted by <a id="user" href="/passport/{{item.user.user.id}}/">{{item.user.user.username}}</a> 
 			</div>
-				{{isFollowing}}
 				{% if isFollowing%}
 				<button type="submit" class="unfollowbutton">Unfollow</button>
 				{% else %}

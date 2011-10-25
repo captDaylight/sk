@@ -4,7 +4,6 @@ $(document).ready(function(){
 	
 	geocoder = new google.maps.Geocoder();
 
-
 	createMap();
 	codeAddress();
 
@@ -12,6 +11,7 @@ $(document).ready(function(){
 	    var latlng = new google.maps.LatLng(-34.397, 150.644);
 	    var myOptions = {
 	      zoom: 3,
+	      scrollwheel: false,
 	      panControl: false,
 		  zoomControl: false,
 		  scaleControl: false,

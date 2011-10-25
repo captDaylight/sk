@@ -123,13 +123,15 @@ img{
 	padding: 2px;
 }
 
-
-
 .avatarsmall{
 	width: 40px;
 	height:40px;
 }
 
+.avatarbig{
+	width:100px;
+	height:100px;
+}
 
 .footerinfo{
 	float:left;

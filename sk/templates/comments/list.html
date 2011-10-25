@@ -1,16 +1,17 @@
 <div class="comment_start"></div>
-<div>here</div>
-
 {% for comment in comment_list %}
-   <div class="comment">
-   	  <div>
-   	  <a href="/passport/{{comment.user.id}}">{{ comment.user }}</a>
-   	  </div>
-   	  <div>
-   	  {{ comment.comment }}
-   	  </div>
-   	  <div>
-   	  (posted {{ comment.submit_date|timesince }} ago)
-   	  </div>
-   </div>
+	<div class="comment">
+		<div>
+			<img src="{{MEDIA_URL}}img/blank_avatar.png" alt="avatar" class="avatarsmall"/>
+		</div>
+		<div>
+			<a href="/passport/{{comment.user.id}}">{{ comment.user }}</a>
+		</div>
+		<div>
+		{{ comment.comment }}
+		</div>
+		<div>
+		(posted {{ comment.submit_date|timesince }} ago)
+		</div>
+	</div>
 {% endfor %}

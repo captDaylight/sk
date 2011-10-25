@@ -38,7 +38,7 @@ def item(request, item_id):
 		else:
 			f = True
 		print hv
-		return render_to_response('sooouk/item.html', {'item': i, 'isFollowing': f,'has_voted':hv,'following_list': following_list}, context_instance=RequestContext(request))
+		return render_to_response('sooouk/item.html', {'item': i, 'isFollowing': f,'hasVoted':hv,'following_list': following_list}, context_instance=RequestContext(request))
 	return render_to_response('sooouk/item.html', {'item': i}, context_instance=RequestContext(request))
 	
 	

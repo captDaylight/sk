@@ -9,22 +9,4 @@ $(document).ready(function() {
 			return add_vote();
 		}
 	});
-	
-	
-/*
-	$('form').submit(function(){
-		$.ajax({
-		url:"/unfollow/"+itemUserId+"/",
-		type:"GET",		
-		success: function(data){
-			try{
-				return false;			
-			}
-			catch(e){
-				console.log("not cool");
-			}
-		}
-		event.preventDefault();
-	});
-*/
 });
