@@ -3,7 +3,7 @@ body{
 	background-image: url(/media/x-pattern.gif);
 	background-repeat: repeat;
 	color: black;
-	background-color: #e9e9e9;
+	background-color: #E4E1D8;
 	padding: 0px;
 	margin: 0px;
 	font-family: Futura;
@@ -16,7 +16,7 @@ a{
 }
 
 img{
-	max-height: 500px;
+	max-height: 300px;
 }
 
 /* head content section */
@@ -24,9 +24,9 @@ img{
 	background: black;
 	height: 50px;
 	width: 100%;
-	-webkit-box-shadow: 0px 0px 20px 5px rgba(100, 100, 100, 50);
-	-moz-box-shadow: 0px 0px 20px 5px rgba(100, 100, 100, 50);
-	box-shadow: 0px 0px 20px 5px rgba(100, 100, 100, 50);
+	-webkit-box-shadow: 0px 0px 20px 0px rgba(100, 100, 100, 50);
+	-moz-box-shadow: 0px 0px 20px 0px rgba(100, 100, 100, 50);
+	box-shadow: 0px 0px 20px 0px rgba(100, 100, 100, 50);
 	z-index: 1;
 }
 
@@ -63,8 +63,6 @@ img{
 }
 
 
-
-
 /* main content section */
 .mainbody{
 	min-height: 100%;
@@ -75,20 +73,25 @@ img{
 	display: block;
 	z-index: -1;
 	position: relative;
+
 }
 
 .content{
-	background-color: white;
 	width: 80%;
 	float:left;
 	position:relative;
+	-webkit-box-shadow: 0px 0px 10px 10px rgba(0, , , 1);
+	-moz-box-shadow: 0px 0px 10px 10px rgba(0, , , 1);
+	box-shadow: 0px 0px 10px 10px rgba(0, , , 1);
 }
 
 .rightbar{	
-	background-color: aqua;
+	margin-top: 20px;
+	padding: 5px;
 	float:left;
-	width:20%;
+	width:150px;
 	position:relative;
+	background-color: white;
 }
 .footer{
 	width: 100%;
@@ -102,14 +105,18 @@ img{
 
 
 /* item styling */
-
 .item{
 	background-color: gray;
 	float: right;
-	margin: 2px;
+	margin: 5px;
 	width: 150px;
 	height: 150px;
 	cursor: pointer;
+	display:inline-block;
+	-webkit-box-shadow: 0px 0px 10px 10px rgba(0, , , 1);
+	-moz-box-shadow: 0px 0px 10px 10px rgba(0, , , 1);
+	box-shadow: 0px 0px 10px 10px rgba(0, , , 1);
+
 }
 
 .item:hover .itemtitle{
@@ -121,6 +128,9 @@ img{
 	background-color: red;
 	width: 146px;
 	padding: 2px;
+	position:absolute;
+	left:0px;
+	top: 0px;
 }
 
 .avatarsmall{
@@ -135,5 +145,21 @@ img{
 
 .footerinfo{
 	float:left;
-	margin: 20px;
+	margin-top: 20px;
+	margin-right:10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.copyright{
+	float:left;
+	clear:both;
+	margin: 10px;
+	font-size: 12px;
+}
+
+.footercontent{
+	margin-left: auto;
+	margin-right: auto;
+	width:700px;
 }

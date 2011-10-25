@@ -7,6 +7,31 @@
 
 <script type="text/javascript">
 var address = "New York City";	
+
+function changeUserInfo(){
+	$.ajax({
+		url: url,
+		type:"POST",
+		data:{'word': word},
+		success: function(data){
+			try{
+				$("#word").val("")
+				var jsonOBJ = $.parseJSON(data);
+				var forCSS = jsonOBJ.word;
+				if($("#word-"+forCSS).length > 0){
+					console.log("it found the existing element");
+					$("#word-"+forCSS).html( jsonOBJ.word + " <b style=\"color: #28b8ff;\">x "+ jsonOBJ.count +"</b>")
+				}else{
+					$(".words").append("<div class=\"word\"><a id=\"word-"+ forCSS +"\" style=\"cursor:pointer;\">"+jsonOBJ.word +" <b style=\"color: #28b8ff;\">x "+jsonOBJ.count +"</b></a></div>");
+				}
+			}
+			catch(e){
+				console.log("not cool");
+			}
+		}		
+	});
+}
+
 $(document).ready(function() {	
 	var userInfoOpen = false;
 	
@@ -25,7 +50,14 @@ $(document).ready(function() {
 	$("button").click(function(){
 		if($(this).attr('id') == 'edit'){
 			openClose();
+		}else if($(this).attr('id')=='passportbutton'){
+			changeUserInfo()
 		}
+	});
+	
+	$('#passportbutton').submit(function(event){
+		event.preventDefault(); 
+		return false;
 	});
 
 });

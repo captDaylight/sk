@@ -50,15 +50,17 @@ $(document).ready(function() {
 {% block content %}
 {% if item %}
 	<div class="itemfull">
-		<div class="itemfullphoto">
-			<img src="{{item.photourl}}" alt="{{item.title}}"/>
-			<div id="map_canvas" style="width:100%; height:200px; float: right;"></div>
+		<div class="itemfullvisual">
+			<img src="{{item.photourl}}" alt="{{item.title}}" class="itemfullphoto"/>
+			<div id="map_canvas" style="width:100%; height:300px; float: left; z-index:0;"></div>
 		</div>
 		
-		
-		<div class="itemfulltitle">
-			{{item.title}}	
-			<div>
+		<div class="itembanner">
+			<div class="itemfulltitle">
+				{{item.title}}	
+			</div>
+			
+			<div class="tweet">
 				<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Sooouk >> http://soooukitup.tumblr.com/" data-count="horizontal" data-via="sooouk">Tweet</a>
 				<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 			</div>
@@ -106,7 +108,7 @@ $(document).ready(function() {
 			</div>
 			
 			<form action="/login/">
-				<button type="submit" id="loginbutton">login</button>
+				<button type="submit" class="loginbutton">login</button>
 			</form>			
 		{% endif %}	
 
@@ -114,12 +116,9 @@ $(document).ready(function() {
 		<p>Item doesn't exist.</p>
 	{% endif %}
 	
-	
-	
 	{% load comments %}
 	{% render_comment_form for item %}
 	{% render_comment_list for item %}
-	
 	
 	</div>
 
