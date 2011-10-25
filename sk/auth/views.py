@@ -49,7 +49,7 @@ def sign_up(request):
 							#for now it is going to redirect back to the home page, but in the future it should redirect back to the page that you clicked sign in from
 							#or maybe link to where they can fill out their profile
 							print "redirecting to the landing page"
-							return HttpResponseRedirect(reverse('soooukAlpha.views.landing'),context_instance=RequestContext(request))
+							return HttpResponseRedirect(reverse('sk.views.landing'))
 						else:
 							error = "Your account has been disabled."
 					else:
