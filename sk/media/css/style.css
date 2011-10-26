@@ -107,7 +107,7 @@ img{
 
 /* item styling */
 .item{
-	background-color: gray;
+	background-color: white;
 	float: right;
 	margin: 5px;
 	width: 150px;
@@ -118,7 +118,21 @@ img{
 	-moz-box-shadow: 0px 0px 10px 10px rgba(0, , , 1);
 	box-shadow: 0px 0px 10px 10px rgba(0, , , 1);
 	position: relative;
+	overflow:hidden;
+}
+.itemcover{
+	background-color:white;
+	display:none;
+}
 
+.item:hover .itemcover{
+	display: block;
+	height: 150px;
+	width: 150px;
+	position:absolute;
+	left:0px;
+	top: 0px;
+	opacity: .5;
 }
 
 .itemtitle{

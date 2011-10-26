@@ -26,8 +26,10 @@
 	{% for item in latest_item_list %}
 	<a href="/item/{{item.id}}">
 		<div class="item">
-			<div>
-				<img src="{{item.photourl}}" style="width: 100%; height: 100%;"/>
+			<div class="itemcover">
+			</div>
+			<div style="margin-left: auto; margin-right: auto;">
+				<img src="{{item.photourl}}" style="height: 150px;"/>
 			</div>
 			<div class="itemtitle">
 				{{item.title}}
