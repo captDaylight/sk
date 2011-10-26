@@ -32,11 +32,6 @@
 			<div class="itemtitle">
 				{{item.title}}
 			</div>
-			{% if item.user.user.username == user.username %}
-				Uploaded by You
-			{% else %}
-				{{item.user.user.username}}
-			{% endif %}
 		</div>
 	</a>
 	{% endfor %}

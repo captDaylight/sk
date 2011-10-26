@@ -121,18 +121,17 @@ img{
 
 }
 
-.item:hover .itemtitle{
-	display: block;
-}
-
 .itemtitle{
-	display:none;
-	background-color: red;
-	width: 146px;
-	padding: 2px;
+	background-color: black;
+	width: 140px;
+	color: white;
+	padding-left: 10px;
+	padding-top:2px;
+	padding-bottom: 2px;
 	position:absolute;
 	left:0px;
 	top: 0px;
+	display: block;
 }
 
 .avatarsmall{
