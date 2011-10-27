@@ -19,7 +19,6 @@ $(document).ready(function(){
 		  mapTypeControl: false,
 	      mapTypeId: google.maps.MapTypeId.TERRAIN,
 	    }
-	    console.log("Making a map");
 	    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);	
 	}
 

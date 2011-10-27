@@ -40,7 +40,7 @@
 					Following:
 					{% for person in following_list %}
 						<div class="person">
-							<a href="/passport/{{person.user.id}}"><img src="{{MEDIA_URL}}img/blank_avatar.png" alt="avatar" class="avatarsmall">
+							<a href="/passport/{{person.user.id}}"><img src="{{MEDIA_URL}}img/blank_avatar.png" alt="avatar" class="avatarsmall"/>
 							<div class="username">{{person.user.username}}</div></a>
 						</div>
 					{% endfor %}

@@ -1,6 +1,6 @@
 /* element styles */
 body{
-	background-image: url(/media/x-pattern.gif);
+	background-image: url('/media/img/x-pattern.gif');
 	background-repeat: repeat;
 	color: black;
 	background-color: #E4E1D8;
