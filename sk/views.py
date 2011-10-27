@@ -125,7 +125,6 @@ def passport(request, user_id):
 			'form': form,
 		}, context_instance=RequestContext(request))
 	#check for post data
-	
 	item_list = []
 	item_list = Item.objects.filter(user=request.user.get_profile())[:50]
 	item_vote_list = []
