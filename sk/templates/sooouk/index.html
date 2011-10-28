@@ -24,8 +24,8 @@
 {% block content %}
 {% if latest_item_list %}
 	{% for item in latest_item_list %}
-	<a href="/item/{{item.id}}">
-		<div class="item">
+	<div class="item">
+		<a href="/item/{{item.id}}">
 			<div class="itemcover">
 			</div>
 			<div style="margin-left: auto; margin-right: auto;">
@@ -34,13 +34,23 @@
 			<div class="itemtitle">
 				{{item.title}}
 			</div>
-		</div>
-	</a>
+		</a>
+	</div>
 	{% endfor %}
 {% else %}
 	<p>Problem getting Items...</p>
 {% endif %}
 
+
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.isotope.min.js"></script>
+
+<script type="text/javascript">
+$('#content').isotope({
+  // options
+  itemSelector : '.item',
+  layoutMode : 'fitRows'
+});
+</script>
 {% endblock %}
 
 
