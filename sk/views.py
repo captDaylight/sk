@@ -12,7 +12,7 @@ import json
 
 def landing(request):
 	following_list = []
-	latest_item_list = Item.objects.all().order_by('-created_at')[:50]
+	latest_item_list = Item.objects.all().order_by('-created_at')[:100]
 	if request.user.is_authenticated():
 		following_list = request.user.get_profile().following.all()[:50]
 	return render_to_response('sooouk/index.html', {'latest_item_list': latest_item_list, 'following_list': following_list},context_instance=RequestContext(request))

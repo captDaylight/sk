@@ -24,7 +24,7 @@
 {% block content %}
 {% if latest_item_list %}
 	{% for item in latest_item_list %}
-	<div class="item">
+	<div class="item {{item.title}}">
 		<a href="/item/{{item.id}}">
 			<div class="itemcover">
 			</div>
@@ -45,11 +45,25 @@
 <script type="text/javascript" src="{{MEDIA_URL}}js/jquery.isotope.min.js"></script>
 
 <script type="text/javascript">
-$('#content').isotope({
-  // options
-  itemSelector : '.item',
-  layoutMode : 'fitRows'
-});
+
+$(function(){
+      
+      var $container = $('#content');
+
+      $container.isotope({
+        itemSelector : '.item',
+        layoutMode : 'fitRows'
+      });
+      
+      
+		$('#filters a').click(function(){
+			var selector = $(this).attr('data-filter');
+			$container.isotope({ filter: selector });
+			return false;
+		});
+
+      
+    });
 </script>
 {% endblock %}
 
