@@ -2,7 +2,7 @@
 
 
 {% block head %}
-
+<script type="text/javascript" src="{{MEDIA_URL}}js/index.js"></script>
 {% endblock %}
 
 
@@ -19,12 +19,50 @@
 
 
 
+{% block filters %}
+			<div class="filterbar">
+				<ul id="filters" class="option-set clearfix" data-option-key="filter">
+				  <li><a href="#" data-filter="*">Show All</a></li>
+				  <li id="countries">Countries</li>
+				  <li id="categories">Categories</li>
+				  <li id="people">People</li>
+				  <li><a href="#" data-filter=".random">Random</a></li>
+				</ul>
+			</div>
+			<div class="filterbar" id="countriesfilter">
+				<ul id="filters" class="option-set clearfix" data-option-key="filter">
+				  <li><a href="#" data-filter=".france">France</a></li>
+				  <li><a href="#" data-filter=".spain">Spain</a></li>
+				  <li><a href="#" data-filter=".bolivia">Bolivia</a></li>
+				  <li><a href="#" data-filter=".china">China</a></li>
+				  <li><a href="#" data-filter=".japan">Japan</a></li>
+				  <li><a href="#" data-filter=".india">India</a></li>
+				  <li><a href="#" data-filter=".uganda">Uganda</a></li>
+				  <li><a href="#" data-filter=".botswana">Botswana</a></li>
+				</ul>
+			</div>
+			<div class="filterbar" id="categoriesfilter">
+				<ul id="filters" class="option-set clearfix" data-option-key="filter">
+				  <li><a href="#" data-filter=".Food">Food</a></li>
+				  <li><a href="#" data-filter=".Clothing">Clothing</a></li>
+				  <li><a href="#" data-filter=".Beauty">Beauty</a></li>
+				  <li><a href="#" data-filter=".Household">Household</a></li>
+				  <li><a href="#" data-filter=".Recreation">Recreation</a></li>
+				  <li><a href="#" data-filter=".Drink">Drink</a></li>
+				</ul>
+			</div>
+			<div class="subfilterbar" id="peoplefilter">
+				<ul class="subfilters" class="option-set clearfix" data-option-key="filter">
+					to be articulated...
+				</ul>
+			</div>
+{% endblock %}
 
 
 {% block content %}
 {% if latest_item_list %}
 	{% for item in latest_item_list %}
-	<div class="item {{item.title}}">
+	<div class="item {{item.product_type}} {{item.location}}">
 		<a href="/item/{{item.id}}">
 			<div class="itemcover">
 			</div>

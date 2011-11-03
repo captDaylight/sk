@@ -1,0 +1,23 @@
+# google "extending the user model" 
+# roughly you get a user and do this>>
+# 	user.get_profile().last_name
+
+
+# HOW IT WORKS 
+# >>> p.get_profile().followers.add(t.get_profile())
+# >>> p.get_profile().followers.all()
+# [<UserProfile: >]
+# >>> s.get_profile().following.all()
+# []
+# >>> p.get_profile().followers.add(s.get)
+# Traceback (most recent call last):
+#   File "<console>", line 1, in <module>
+# AttributeError: 'User' object has no attribute 'get'
+# >>> p.get_profile().followers.add(s.get_profile())
+# >>> p.get_profile().followers.all()
+# [<UserProfile: >, <UserProfile: >]
+# >>> s.get_profile().following.all()
+# [<UserProfile: >]
+# >>> s.get_profile().followers.all()
+# []
+

@@ -3,29 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django import forms
 
-# google "extending the user model" 
-# roughly you get a user and do this>>
-# 	user.get_profile().last_name
-
-
-# HOW IT WORKS 
-# >>> p.get_profile().followers.add(t.get_profile())
-# >>> p.get_profile().followers.all()
-# [<UserProfile: >]
-# >>> s.get_profile().following.all()
-# []
-# >>> p.get_profile().followers.add(s.get)
-# Traceback (most recent call last):
-#   File "<console>", line 1, in <module>
-# AttributeError: 'User' object has no attribute 'get'
-# >>> p.get_profile().followers.add(s.get_profile())
-# >>> p.get_profile().followers.all()
-# [<UserProfile: >, <UserProfile: >]
-# >>> s.get_profile().following.all()
-# [<UserProfile: >]
-# >>> s.get_profile().followers.all()
-# []
-
 	
 class UserProfile(models.Model):
 	user = models.OneToOneField(User)
@@ -63,6 +40,8 @@ class Item(models.Model):
 	#convert location on redirect to item full page after creation 
 	latitude = models.CharField(max_length = 100)
 	longitude = models.CharField(max_length = 100)
+	country = models.CharField(max_length = 100)
+	product_type = models.CharField(max_length = 100)
 	created_at = models.DateTimeField(auto_now_add = True)
 	def __unicode__(self):
 		return self.title

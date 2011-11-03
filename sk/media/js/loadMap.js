@@ -19,7 +19,7 @@ $(document).ready(function(){
 		  mapTypeControl: false,
 	      mapTypeId: google.maps.MapTypeId.TERRAIN,
 	    }
-	    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);	
+	    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 	}
 
 	function codeAddress() {

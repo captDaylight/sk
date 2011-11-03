@@ -47,7 +47,11 @@ img{
 	
 }
 
-.filterbar{
+.mainfilterbar{
+	height: 30px;
+	background: #ffb24b;	
+}
+.subfilterbar{
 	height: 30px;
 	background: #ffb24b;	
 }

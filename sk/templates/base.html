@@ -19,16 +19,7 @@
 	        	{%block portal%}{% endblock %}
 			</div>
 			
-			<div class="filterbar">
-				<ul id="filters" class="option-set clearfix" data-option-key="filter">
-				  <li><a href="#" data-filter="*">show all</a></li>
-				  <li><a href="#" data-filter=".cats">cats</a></li>
-				  <li><a href="#" data-filter=".balloons">balloons</a></li>
-				  <li><a href="#" data-filter=".cloud">cloud</a></li>
-				  <li><a href="#" data-filter=".goldfish">goldfish</a></li>
-				  <li><a href="#" data-filter=".building">building</a></li>
-				</ul>
-			</div>
+			{%block filters %}{% endblock %}
         </div>
         <div class="mainbody">
 	        <div id="content">
