@@ -7,21 +7,21 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ungettext
 from sooouk.models import *
-import json
+import json as simplejson
+ 
+
+landingItemsAmount = 100
+
 
 
 def landing(request):
 	following_list = []
-	latest_item_list = Item.objects.all().order_by('-created_at')[:100]
+	latest_item_list = Item.objects.all().order_by('-created_at')[:landingItemsAmount]
 	if request.user.is_authenticated():
 		following_list = request.user.get_profile().following.all()[:50]
 	return render_to_response('sooouk/index.html', {'latest_item_list': latest_item_list, 'following_list': following_list},context_instance=RequestContext(request))
-	
-# there are three situations being passed for following and vote
-# 1 = user logged in and NOT following the item/user.
-# 2 = user logged in and following the item/user.
-# 3 = user NOT logged in
-# in the case that the logged in user uploaded the product, the template will handle the issue
+
+
 def item(request, item_id):
 	i = get_object_or_404(Item, pk=item_id)
 	if request.user.is_authenticated():
@@ -40,8 +40,6 @@ def item(request, item_id):
 		print hv
 		return render_to_response('sooouk/item.html', {'item': i, 'isFollowing': f,'hasVoted':hv,'following_list': following_list}, context_instance=RequestContext(request))
 	return render_to_response('sooouk/item.html', {'item': i}, context_instance=RequestContext(request))
-	
-	
 	
 
 @login_required
@@ -79,11 +77,28 @@ def upload(request):
 			'form': form,
 			'following_list': following_list,
 		},context_instance=RequestContext(request))
-	
-	
+
+
+def fetch(request, item_type):
+	amountItems = Item.objects.count()
+	amountItemsDisplayed = amountItems - landingItemsAmount
+	if request.method == 'GET':
+		i = Item.objects.filter(location=item_type).exclude(id__in=[amountItemsDisplayed-amountItems])[:50]
+		items = formatItems(i)
+# 		success = {"success": "success", "items": items}
+		success = {"success": "success"}
+	else:
+		success = {"success": "FAIL"}
+	return HttpResponse(json.dumps(success), mimetype="application/javascript")
+
+def formatItems(objs):
+	items = []
+	for i in objs:
+		items.append({'title': i.title, 'posts': i.post, 'photourl': i.photourl, 'location': i.location, 'product_type': i.product_type})			
+	return items
+
 @login_required
 def vote(request, item_id, user_id):
-	print "inside vote"
 	if request.method == 'GET':
 		u = User.objects.get(id=user_id)
 		i = Item.objects.get(id=item_id)
@@ -94,6 +109,7 @@ def vote(request, item_id, user_id):
 		success = {"success": "FAIL"}
 	return HttpResponse(json.dumps(success), mimetype="application/javascript")	
 
+
 @login_required
 def follow(request, user_id):
 	if request.method == 'GET':
@@ -101,8 +117,8 @@ def follow(request, user_id):
 		u.get_profile().followers.add(request.user.get_profile())
 		print u.get_profile().followers.all()		
 	success = {"success": "it was a success"}
-	print success
 	return HttpResponse(json.dumps(success), mimetype="application/javascript")	
+
 	
 @login_required
 def unfollow(request, user_id):
@@ -113,6 +129,7 @@ def unfollow(request, user_id):
 	success = {"success": "it was a success"}
 	print success
  	return HttpResponse(json.dumps(success), mimetype="application/javascript")
+
 
 @login_required
 def passport(request, user_id):

@@ -32,24 +32,24 @@
 			</div>
 			<div class="filterbar" id="countriesfilter">
 				<ul id="filters" class="option-set clearfix" data-option-key="filter">
-				  <li><a href="#" data-filter=".france">France</a></li>
-				  <li><a href="#" data-filter=".spain">Spain</a></li>
-				  <li><a href="#" data-filter=".bolivia">Bolivia</a></li>
-				  <li><a href="#" data-filter=".china">China</a></li>
-				  <li><a href="#" data-filter=".japan">Japan</a></li>
-				  <li><a href="#" data-filter=".india">India</a></li>
-				  <li><a href="#" data-filter=".uganda">Uganda</a></li>
-				  <li><a href="#" data-filter=".botswana">Botswana</a></li>
+				  <li><a href="#" data-filter=".france" class="france">France</a></li>
+				  <li><a href="#" data-filter=".spain" class="spain">Spain</a></li>
+				  <li><a href="#" data-filter=".bolivia" class="bolivia">Bolivia</a></li>
+				  <li><a href="#" data-filter=".china" class="china">China</a></li>
+				  <li><a href="#" data-filter=".japan" class="japan">Japan</a></li>
+				  <li><a href="#" data-filter=".india" class="india">India</a></li>
+				  <li><a href="#" data-filter=".uganda" class="uganda">Uganda</a></li>
+				  <li><a href="#" data-filter=".botswana" class="botswana">Botswana</a></li>
 				</ul>
 			</div>
 			<div class="filterbar" id="categoriesfilter">
 				<ul id="filters" class="option-set clearfix" data-option-key="filter">
-				  <li><a href="#" data-filter=".Food">Food</a></li>
-				  <li><a href="#" data-filter=".Clothing">Clothing</a></li>
-				  <li><a href="#" data-filter=".Beauty">Beauty</a></li>
-				  <li><a href="#" data-filter=".Household">Household</a></li>
-				  <li><a href="#" data-filter=".Recreation">Recreation</a></li>
-				  <li><a href="#" data-filter=".Drink">Drink</a></li>
+				  <li><a href="#" data-filter=".Food" class="Food">Food</a></li>
+				  <li><a href="#" data-filter=".Clothing" class="Clothing">Clothing</a></li>
+				  <li><a href="#" data-filter=".Beauty" class="Beauty">Beauty</a></li>
+				  <li><a href="#" data-filter=".Household" class="Household">Household</a></li>
+				  <li><a href="#" data-filter=".Recreation" class="Recreation">Recreation</a></li>
+				  <li><a href="#" data-filter=".Drink" class="Drink">Drink</a></li>
 				</ul>
 			</div>
 			<div class="subfilterbar" id="peoplefilter">
@@ -86,23 +86,70 @@
 <script type="text/javascript">
 
 $(function(){
-      
       var $container = $('#content');
 
       $container.isotope({
         itemSelector : '.item',
         layoutMode : 'fitRows'
       });
-      
-      
+            
 		$('#filters a').click(function(){
+			fetchItems($(this).attr('class'));
 			var selector = $(this).attr('data-filter');
 			$container.isotope({ filter: selector });
 			return false;
 		});
-
-      
     });
+    
+    function fetchItems(className){
+    	var itemType = className;
+    	$.ajax({
+    		url: "/fetch/"+itemType+"/",
+    		type: "GET",
+    		success: function(data){
+    			console.log("here");
+    			try{
+    				console.log("inside of the try");
+    				var jsonOBJ = $.parseJSON(data);
+    				console.log(jsonOBJ);
+    			}
+    			catch(e){
+					
+    			}
+    		}
+    	});
+    	return false
+    }
+    
+/*
+    
+    function add_word(word, url){
+			$.ajax({
+				url: url,
+				type:"POST",
+				data:{'word': word},
+				success: function(data){
+					try{
+						$("#word").val("")
+						var jsonOBJ = $.parseJSON(data);
+						var forCSS = jsonOBJ.word;
+						if($("#word-"+forCSS).length > 0){
+							console.log("it found the existing element");
+							$("#word-"+forCSS).html( jsonOBJ.word + " <b style=\"color: #28b8ff;\">x "+ jsonOBJ.count +"</b>")
+						}else{
+							$(".words").append("<div class=\"word\"><a id=\"word-"+ forCSS +"\" style=\"cursor:pointer;\">"+jsonOBJ.word +" <b style=\"color: #28b8ff;\">x "+jsonOBJ.count +"</b></a></div>");
+						}
+					}
+					catch(e){
+						console.log("not cool");
+					}
+				}
+			});
+	}
+    
+*/
+    
+    
 </script>
 {% endblock %}
 
