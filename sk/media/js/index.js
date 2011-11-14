@@ -33,4 +33,11 @@ $(document).ready(function() {
 			}
 		}
 	}
+	
+	
+	$('.item').mouseenter(function(){
+		$(this).children('.prod_img').css('opacity', '0.75')
+	}).mouseleave(function(){
+		$(this).children('.prod_img').css('opacity', '1.0')
+	})
 });

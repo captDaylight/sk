@@ -1,12 +1,13 @@
 {% extends 'base.html'%}
 
-
-{% block head %}
-<script type="text/javascript" src="{{MEDIA_URL}}js/index.js"></script>
+{% block css %}
 <link href="{{MEDIA_URL}}css/style-index.css" rel="stylesheet" type="text/css" />
 {% endblock %}
 
-
+{% block js %}
+<script type="text/javascript" src="{{MEDIA_URL}}js/index.js"></script>
+<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.isotope.min.js"></script>
+{%endblock%}
 
 {% block portal %}
 <div class="portal">
@@ -20,7 +21,7 @@
 
 
 
-{% block filters %}
+{% block header_left %}
 			<div class="filterbar">
 				<ul id="filters" class="option-set clearfix" data-option-key="filter">
 				  <li><a href="#" data-filter="*">Show All</a></li>
@@ -60,50 +61,44 @@
 {% endblock %}
 
 
-{% block content %}
-{% if latest_item_list %}
-	{% for item in latest_item_list %}
-	<div class="item {{item.product_type}} {{item.location}}">
-		<a href="/item/{{item.id}}">
-			<div class="itemcover">
-			</div>
-			<div style="margin-left: auto; margin-right: auto;">
-				<img src="{{item.photourl}}" style="height: 150px;"/>
-			</div>
-			<div class="itemtitle">
-				{{item.title}}
-			</div>
-		</a>
-	</div>
-	{% endfor %}
-{% else %}
-	<p>Problem getting Items...</p>
-{% endif %}
+{% block content_left %}
+	{% if latest_item_list %}
+		<ul class="items">
+			{% for item in latest_item_list %}
+			<a href="/item/{{item.id}}">
+				<li class="item {{item.product_type}} {{item.location}}">
+					<div class="title">{{item.title}}</div>
+					<img class="prod_img" src="{{item.photourl}}" width="130" height="130"/>
+				</li>
+			</a>
+			{%endfor%}
+		</ul>
+		<div style="clear: both;"></div>
+	{% else %}
+		<p>Problem getting Items...</p>
+	{% endif %}
 
-
-<script type="text/javascript" src="{{MEDIA_URL}}js/jquery.isotope.min.js"></script>
-
-<script type="text/javascript">
-
-$(function(){
-      
-      var $container = $('#content');
-
-      $container.isotope({
-        itemSelector : '.item',
-        layoutMode : 'fitRows'
-      });
-      
-      
-		$('#filters a').click(function(){
-			var selector = $(this).attr('data-filter');
-			$container.isotope({ filter: selector });
-			return false;
-		});
-
-      
-    });
-</script>
+	<script type="text/javascript">
+	
+	$(function(){
+	      
+	      var $container = $('#content');
+	
+	      $container.isotope({
+	        itemSelector : '.item',
+	        layoutMode : 'fitRows'
+	      });
+	      
+	      
+			$('#filters a').click(function(){
+				var selector = $(this).attr('data-filter');
+				$container.isotope({ filter: selector });
+				return false;
+			});
+	
+	      
+	    });
+	</script>
 {% endblock %}
 
 
