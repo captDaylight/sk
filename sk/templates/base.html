@@ -12,6 +12,7 @@
     </head>
     
     <body>
+    <div class="wrapper">
     	<div class="header">
     		<div class="header_left">
     			{% block header_left %}{% endblock %}
@@ -25,6 +26,7 @@
     	<div class="content">
     	
     		<div class="content_left">{%block content_left%}{%endblock%}</div>
+    		
     	</div>
     		<div class="content_right">
 	    		{%block content_right%}
@@ -60,7 +62,8 @@
 			</div>
 			
 		{%endblock%}
-
+		<div class="push"></div>
+		</div>
     	<div class="footer">
         	<div class="footercontent">
         		<a>About</a>
@@ -75,71 +78,4 @@
 		</div>
     	
     </body>
-    <!--
-    <body>
-        <div class="head">
-        	<div class="headcontent">
-        		<div class="overmain">
-		        	<div class="titlelink">
-		        		<a href="/">sooouk</a>
-		        	</div>
-	        	</div>
-	        	{#{%block portal%}{% endblock %}#}
-			</div>
-			
-			{%block filters %}{% endblock %}
-        </div>
-        
-        <div class="mainbody">
-	        <div id="content">
-	        	{# {% block content%}{%endblock%} #}
-	        </div>
-	        <div class="rightbar">
-	        	{% if user.is_authenticated %}
-				<div class="rbelement">
-						<a href="/upload/">
-							Upload product
-						</a>
-				</div>
-
-				<div class="rbelement">
-						<a href="/passport/{{user.id}}">
-							Passport
-						</a>
-				</div>
-				{% if following_list %}
-				<div class="following">
-					Following:
-					{% for person in following_list %}
-						<div class="person">
-							<a href="/passport/{{person.user.id}}"><img src="{{MEDIA_URL}}img/blank_avatar.png" alt="avatar" class="avatarsmall"/>
-							<div class="username">{{person.user.username}}</div></a>
-						</div>
-					{% endfor %}
-				</div>
-				{% endif %}
-
-				{% else %}
-				
-				<div class="rbelement">
-					CONTENT WHEN NOT SIGNED IN
-				</div>
-				{% endif %}
-	        </div>
-        </div>
-        
-        <div class="footer">
-        	<div class="footercontent">
-        		<div class="footerinfo"><a>About</a></div>
-				<div class="footerinfo"><a>FAQ</a></div>
-				<div class="footerinfo"><a>Blog</a></div>
-				<div class="footerinfo"><a>Chat</a></div>
-				<div class="footerinfo"><a>Shop</a></div>
-				<div class="footerinfo"><a>Contact Us</a></div>
-				<div class="footerinfo"><a>Feedback</a></div>			
-				<div class="copyright">site design / logo &copy; 2011 sooouk inc;</div>
-        	</div>
-		</div>
-    </body>
-    -->
 </html>

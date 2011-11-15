@@ -1,14 +1,16 @@
 {%extends 'base.html'%}
 
 {%block content%}
+	<div class="no_break">
 	<div class="content_fixed">
 		<div class="left_fixed">
 			{%block left_fixed%}{%endblock%}
 		</div>
-		
+		</div>
 		<div class="right_fixed">
 			{%block content_right%}{{block.super}}{%endblock%}
 			{%block right_fixed%}{%endblock%}
 		</div>
 	</div>
+	
 {%endblock%}

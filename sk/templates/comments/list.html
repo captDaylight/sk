@@ -1,5 +1,29 @@
 <div class="comment_start"></div>
 {% for comment in comment_list %}
+
+<div class="comment">
+	<div class="main_comment">
+		<div class="main_top">
+			<div class="commentavatar">
+					<img src="{{MEDIA_URL}}img/blank_avatar.png" alt="avatar" width="60px" class="avatarsmall"/>
+			</div>
+			<div class="comment_user">
+					<a href="/passport/{{comment.user.id}}">{{ comment.user }}</a><br>
+					{{ comment.submit_date|timesince }} ago
+			</div>
+		</div>
+		{{ comment.comment }}
+	</div>
+	
+	<div class="comment_meta">
+		<div><a>Recommend</a></div>
+		<div><a>Flag</a></div>
+		<div><a>Link</a></div>
+	</div>
+
+</div>
+
+<!--
 	<div class="comment">
 		<div class="commentcontent">
 			<div class="userinfo">
@@ -9,12 +33,12 @@
 				<div class="commentuser">
 					<a href="/passport/{{comment.user.id}}">{{ comment.user }}</a>
 				</div>
+				
+				<div class="commentcomment">
+				{{ comment.comment }}
 			</div>
-			<div class="commentcomment">
-			{{ comment.comment }}
-			</div>
-
 		</div>
+
 		<div class="commentmeta">
 			<div class="commentdate">
 			{{ comment.submit_date|timesince }} ago
@@ -24,4 +48,5 @@
 			<div><a>Link</a></div>
 		</div>
 	</div>
+	-->
 {% endfor %}

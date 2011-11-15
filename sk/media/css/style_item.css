@@ -82,9 +82,27 @@
 	clear:both;
 	height:100%;
 }
+
+.main_comment{
+width: 650px;
+float: left;
+background: white;
+}
+
 .commentavatar{
 	float:left;
 	margin-right: 10px;
+	height: 60px;
+}
+
+.comment_user{
+	height: 80px;
+}
+
+.comment_meta{
+float: left;
+width: 100px;
+background: white;
 }
 
 .commentuser{

@@ -1,4 +1,9 @@
-/* element styles */
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
 body{
 	background-image: url('/media/img/x-pattern.gif');
 	background-repeat: repeat;
@@ -7,6 +12,14 @@ body{
 	padding: 0px;
 	margin: 0px;
 	font-family: Futura;
+	height: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
 }
 
 a{
@@ -48,6 +61,7 @@ a{
 	margin-top: 20px;
 	float: left;
 	width: 100%;
+	margin-bottom: -100px;
 }
 .content_left{
 	margin-right: 150px;
@@ -61,6 +75,10 @@ a{
 	margin-left: -150px; 
 }
 
+.push{
+	height: 100px;
+	clear: both;
+}
 .footer{
 	width: 100%;
 	height: 100px;
@@ -144,11 +162,12 @@ ul#filters li a{
 .left_fixed{
 	width: 850px;
 	float: left;
+	background: #fff;
 }
 
 .right_fixed{
 	width: 150px;
-	float: left;
+	float: right;
 	background-color: #fff;
 }
 
