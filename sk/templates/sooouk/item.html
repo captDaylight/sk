@@ -60,30 +60,33 @@ $(document).ready(function() {
 				{{item.title}}	
 			</div>
 			
-			<div class="tweet">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Sooouk >> http://soooukitup.tumblr.com/" data-count="horizontal" data-via="sooouk">Tweet</a>
-				<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
-			</div>
-			{% if user.is_authenticated %}
-				{% if user != item.user.user %}
-					{% if hasVoted%}
-					<div id="votearea">
-						<b>{{item.vote_set.count}}</b> Vote{{item.vote_set.count|pluralize}}
-						<div>You have Voted.</div>
-					</div>
-					{% else %}
-					<div id="votearea">
-						{{item.vote_set.count}} Vote{{item.vote_set.count|pluralize}}
-						<button type="submit" class="votebutton">Vote</button>
-					</div>
-					{%endif%}
-				{% else %}
+			<div class="right">
+			
 				<div id="votearea">
-					{{item.vote_set.count}} Vote{{item.vote_set.count|pluralize}}
-				</div>				
+				{% if user.is_authenticated %}
+					{% if user != item.user.user %}
+						{% if hasVoted%}
+							<b>{{item.vote_set.count}}</b> Vote{{item.vote_set.count|pluralize}}
+							<div>You have Voted.</div>
+						{% else %}
+							{{item.vote_set.count}} Vote{{item.vote_set.count|pluralize}}
+							<button type="submit" class="votebutton">Vote</button>
+						{%endif%}
+					{% else %}
+						{{item.vote_set.count}} Vote{{item.vote_set.count|pluralize}}
+							
+					{% endif %}
+				{% else %}
 				{% endif %}
-			{% else %}
-			{% endif %}
+				</div>	
+
+			
+				<div class="tweet">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out Sooouk >> http://soooukitup.tumblr.com/" data-count="horizontal" data-via="sooouk">Tweet</a>
+					<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+				</div>
+				
+			</div>	
 		</div>
 		
 		<div class="itemfullpost">

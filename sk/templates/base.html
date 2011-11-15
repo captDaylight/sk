@@ -28,6 +28,8 @@
     	</div>
     		<div class="content_right">
 	    		{%block content_right%}
+	    		
+	    			{%block portal%}{%endblock%}
 	    			{% if user.is_authenticated %}
 						<div class="rbelement">
 							<a href="/upload/">Upload product</a>
@@ -82,7 +84,7 @@
 		        		<a href="/">sooouk</a>
 		        	</div>
 	        	</div>
-	        	{%block portal%}{% endblock %}
+	        	{#{%block portal%}{% endblock %}#}
 			</div>
 			
 			{%block filters %}{% endblock %}

@@ -20,15 +20,20 @@
 	color: white;
 	background-color: black;
 	padding: 5px;
-	clear:both;
+	clear: both;
+	height: 50px;
 }
 
 .itemfulltitle{
 	font-size: 40px;
+	float: left;
+	height: 50px;
+}
+.itembanner .right{
+	float: right;
 }
 .tweet{
-	float:right;
-	margin-top: 30px;
+
 }
 
 #votearea{

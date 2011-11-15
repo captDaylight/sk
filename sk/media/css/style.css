@@ -30,6 +30,7 @@ a{
 	font-size: 40px;
 	font-family: Futura;
 	float:right;
+	margin-right: 25px;
 }
 .header .header_right a{
 	color: #fff;
@@ -118,6 +119,7 @@ ul.items li.item div.title{
 
 ul#filters{
 	list-style: none;
+	height: 15px;
 }
 
 ul#filters li{
