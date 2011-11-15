@@ -12,8 +12,6 @@ import json as simplejson
 
 landingItemsAmount = 100
 
-
-
 def landing(request):
 	following_list = []
 	latest_item_list = Item.objects.all().order_by('-created_at')[:landingItemsAmount]

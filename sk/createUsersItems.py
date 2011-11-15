@@ -22,5 +22,5 @@ def createUsersItems():
  	while counter < 200:
 		i = Item()
 		title = words[randrange(0,len(words))] + ' ' + words[randrange(0,len(words))]
-		i = user.get_profile().item_set.create(title=title, post=post,location=local[randrange(0,len(local))], photourl = imgurls[randrange(0,len(imgurls))], product_type= product_type[randrange(0,len(product_type))])
+		i = user.get_profile().item_set.create(title=title,item_size = randrange(1,4), post=post,location=local[randrange(0,len(local))], photourl = imgurls[randrange(0,len(imgurls))], product_type= product_type[randrange(0,len(product_type))])
 		counter += 1

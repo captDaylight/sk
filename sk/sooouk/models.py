@@ -43,6 +43,7 @@ class Item(models.Model):
 	country = models.CharField(max_length = 100)
 	product_type = models.CharField(max_length = 100)
 	created_at = models.DateTimeField(auto_now_add = True)
+	item_size = models.IntegerField();
 	def __unicode__(self):
 		return self.title
 
